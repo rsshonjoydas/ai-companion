@@ -14,7 +14,7 @@ const routes = [
   },
   {
     icon: Plus,
-    href: '/companion/new',
+    href: '/companion/65214f14144d2872910e423c',
     label: 'Create',
     pro: true,
   },
