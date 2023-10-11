@@ -39,6 +39,7 @@
     "ai": "^2.2.14",
     "axios": "^1.5.1",
     "class-variance-authority": "^0.7.0",
+    "cloudinary": "^1.41.0",
     "clsx": "^2.0.0",
     "dotenv": "^16.3.1",
     "langchain": "0.0.92",

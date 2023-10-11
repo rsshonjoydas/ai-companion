@@ -29,7 +29,7 @@ export const ImageUpload = ({ value, onChange }: ImageUploadProps) => {
       <CldUploadButton
         options={{ maxFiles: 1 }}
         onUpload={(result: any) => onChange(result.info.secure_url)}
-        uploadPreset='lm7z9gtp'
+        uploadPreset={`${process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}`}
       >
         <div className='p-4 border-4 border-dashed border-primary/10 rounded-lg hover:opacity-75 transition flex flex-col space-y-2 items-center justify-center'>
           <div className='relative h-40 w-40'>
