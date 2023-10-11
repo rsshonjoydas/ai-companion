@@ -3,16 +3,15 @@
 import { UserButton } from '@clerk/nextjs';
 import { Sparkles } from 'lucide-react';
 import { Poppins } from 'next/font/google';
+import Link from 'next/link';
 
 import { MobileSidebar } from '@/components/mobile-sidebar';
 import ThemeToggle from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
 import { useProModal } from '@/hooks/use-pro-modal';
 import { cn } from '@/lib/utils';
-import Link from 'next/link';
 
 const font = Poppins({ weight: '600', subsets: ['latin'] });
-
 interface NavbarProps {
   isPro: boolean;
 }
@@ -23,7 +22,7 @@ export const Navbar = ({ isPro }: NavbarProps) => {
   return (
     <div className='fixed w-full z-50 flex justify-between items-center py-2 px-4 h-16 border-b border-primary/10 bg-secondary'>
       <div className='flex items-center'>
-        <MobileSidebar />
+        <MobileSidebar isPro={isPro} />
         <Link href='/'>
           <h1
             className={cn(

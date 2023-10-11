@@ -3,34 +3,46 @@
 import { Home, Plus, Settings } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 
+import { useProModal } from '@/hooks/use-pro-modal';
 import { cn } from '@/lib/utils';
 
-const routes = [
-  {
-    icon: Home,
-    href: '/',
-    label: 'Home',
-    pro: false,
-  },
-  {
-    icon: Plus,
-    href: '/companion/65214f14144d2872910e423c',
-    label: 'Create',
-    pro: true,
-  },
-  {
-    icon: Settings,
-    href: '/settings',
-    label: 'Settings',
-    pro: false,
-  },
-];
+interface SidebarProps {
+  isPro: boolean;
+}
 
-export const Sidebar = () => {
-  const pathname = usePathname();
+export const Sidebar = ({ isPro }: SidebarProps) => {
+  const proModal = useProModal();
   const router = useRouter();
+  const pathname = usePathname();
 
-  const onNavigate = (url: string) => router.push(url);
+  const onNavigate = (url: string, pro: boolean) => {
+    if (pro && !isPro) {
+      return proModal.onOpen();
+    }
+
+    return router.push(url);
+  };
+
+  const routes = [
+    {
+      icon: Home,
+      href: '/',
+      label: 'Home',
+      pro: false,
+    },
+    {
+      icon: Plus,
+      href: '/companion/65214f14144d2872910e423c',
+      label: 'Create',
+      pro: true,
+    },
+    {
+      icon: Settings,
+      href: '/settings',
+      label: 'Settings',
+      pro: false,
+    },
+  ];
 
   return (
     <div className='space-y-4 flex flex-col h-full text-primary bg-secondary'>
@@ -38,7 +50,7 @@ export const Sidebar = () => {
         <div className='space-y-2'>
           {routes.map((route) => (
             <div
-              onClick={() => onNavigate(route.href)}
+              onClick={() => onNavigate(route.href, route.pro)}
               key={route.href}
               className={cn(
                 'text-muted-foreground text-xs group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-primary hover:bg-primary/10 rounded-lg transition',
